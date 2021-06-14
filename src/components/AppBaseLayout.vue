@@ -1,8 +1,15 @@
 <template>
   <div>
-    <header class="flex items-center h-56 bg-green-400 px-5">
-      <div class="mx-auto container max-w-screen-md">
-        <slot name="header"></slot>
+    <header class="h-56 bg-green-400 px-5">
+      <div class="relative h-full container mx-auto max-w-screen-md">
+        <div class="absolute top-0 w-full flex justify-between pt-3 text-sm">
+          <p>Goal Code Name</p>
+          <p>01.01.2021</p>
+        </div>
+
+        <div class="flex h-full items-center justify-center">
+          <slot name="header"></slot>
+        </div>
       </div>
     </header>
 

@@ -4,6 +4,6 @@
 
 @layer components {
   .h-title {
-    @apply w-full text-center text-white font-black capitalize text-5xl;
+    @apply text-center text-white font-black capitalize text-5xl;
   }
 }
