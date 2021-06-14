@@ -7,7 +7,7 @@
           <p>01.01.2021</p>
         </div>
 
-        <div class="flex h-full items-center justify-center">
+        <div class="flex flex-col h-full items-center justify-center">
           <slot name="header"></slot>
         </div>
       </div>
