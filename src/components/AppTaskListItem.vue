@@ -1,5 +1,5 @@
 <template>
-  <li class="p-10 border border-gray-200 rounded-md text-left cursor-pointer">
+  <li class="p-10 border border-gray-200 rounded-md text-left">
     <div
       v-if="state === 'active' || state === 'review'"
       class="flex items-center justify-end mb-5"
