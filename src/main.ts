@@ -4,4 +4,10 @@ import router from "./router";
 import store from "./store";
 import "./index.css";
 
-createApp(App).use(store).use(router).mount("#app");
+import BaseLayout from "@/components/BaseLayout.vue";
+
+const app = createApp(App);
+
+app.component("BaseLayout", BaseLayout);
+
+app.use(store).use(router).mount("#app");
