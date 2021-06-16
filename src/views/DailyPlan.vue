@@ -12,7 +12,11 @@
     <AppPageNav
       class="mb-5"
       :left-nav="{ title: 'Weekly Planning', link: '/weekly-plan' }"
-      :right-nav="{ title: 'End of Day', link: '/', isInvisible: isPast }"
+      :right-nav="{
+        title: 'End of Day',
+        link: '/daily-review',
+        isInvisible: isPast,
+      }"
     />
 
     <section>
@@ -79,13 +83,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import { LockClosedIcon } from "@heroicons/vue/outline";
 import AppDateNav from "@/components/AppDateNav.vue";
 import AppPageNav from "@/components/AppPageNav.vue";
-import AppTaskListItem from "@/components/AppTaskListItem.vue";
 import AppTaskForm from "@/components/AppTaskForm.vue";
+import AppTaskListItem from "@/components/AppTaskListItem.vue";
 import AppTaskSecondaryListItem from "@/components/AppTaskSecondaryListItem.vue";
+import { LockClosedIcon } from "@heroicons/vue/outline";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   components: {
