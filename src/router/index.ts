@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from "@/views/Home.vue";
 import WeeklyPlan from "@/views/WeeklyPlan.vue";
+import DailyPlan from "@/views/DailyPlan.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -12,6 +13,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/weekly-plan",
     name: "weeklyPlanView",
     component: WeeklyPlan,
+  },
+  {
+    path: "/daily-plan",
+    name: "dailyPlanView",
+    component: DailyPlan,
   },
 ];
 
