@@ -1,9 +1,12 @@
 <template>
   <li
     class="flex items-center px-10 py-5 border border-gray-200 rounded-md"
-    :class="{ 'flex-row-reverse': state === 'past' }"
+    :class="{ 'flex-row-reverse': state === 'past' || state === 'reviewed' }"
   >
-    <p class="font-light" :class="[state === 'past' ? 'ml-8' : 'mr-8']">
+    <p
+      class="font-light"
+      :class="[state === 'past' || state === 'reviewed' ? 'ml-8' : 'mr-8']"
+    >
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis
       repellat sunt recusandae,
     </p>
@@ -17,15 +20,22 @@
         </button>
       </template>
 
-      <template v-if="state === 'review'">
-        <button>
+      <template v-if="state === 'underReview'">
+        <button @click="actionClicked()">
           <CheckIcon class="h-5 w-5 hover:text-gray-700" />
         </button>
-        <button>
+        <button @click="actionClicked()">
           <LogoutIcon class="h-5 w-5 hover:text-gray-700" />
         </button>
-        <button>
+        <button @click="actionClicked()">
           <TrashIcon class="h-5 w-5 hover:text-gray-700" />
+        </button>
+      </template>
+
+      <template v-if="state === 'reviewed'">
+        <TrashIcon class="h-5 w-5 text-gray-900" />
+        <button @click="actionClicked()">
+          <RefreshIcon class="h-5 w-5 hover:text-gray-700" />
         </button>
       </template>
 
@@ -43,6 +53,7 @@ import {
   TrashIcon,
   CheckIcon,
   LogoutIcon,
+  RefreshIcon,
 } from "@heroicons/vue/outline";
 
 export default defineComponent({
@@ -51,15 +62,26 @@ export default defineComponent({
     TrashIcon,
     CheckIcon,
     LogoutIcon,
+    RefreshIcon,
   },
   props: {
     state: {
       type: String,
       default: "active",
       validator: (value: string): boolean => {
-        return ["active", "review", "past"].includes(value);
+        return ["active", "underReview", "reviewed", "past"].includes(value);
       },
     },
+  },
+  emits: ["actionClicked"],
+  setup(_props, { emit }) {
+    function actionClicked() {
+      emit("actionClicked");
+    }
+
+    return {
+      actionClicked,
+    };
   },
 });
 </script>
