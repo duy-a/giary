@@ -21,10 +21,16 @@
 
     <ul class="mt-5 space-y-8">
       <AppTaskListItem v-if="!isPast" />
-      <AppTaskListItem v-else state="past" />
+      <AppTaskListItem v-if="!isPast" />
+      <AppTaskListItem v-if="!isPast && isTaskVisible" />
+      <AppTaskListItem v-if="isPast" state="past" />
     </ul>
 
-    <AppTaskForm v-if="!isPast" class="mt-8" />
+    <AppTaskForm
+      v-if="!isPast && !isTaskVisible"
+      class="mt-8"
+      @submitted="isTaskVisible = true"
+    />
   </BaseLayout>
 </template>
 
@@ -43,9 +49,11 @@ export default defineComponent({
     LockClosedIcon,
   },
   setup() {
+    const isTaskVisible = ref(false);
     const isPast = ref(false);
 
     return {
+      isTaskVisible,
       isPast,
     };
   },
