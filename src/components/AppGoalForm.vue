@@ -54,7 +54,8 @@ export default defineComponent({
   components: {
     CubeTransparentIcon,
   },
-  setup() {
+  emits: ["submitted"],
+  setup(_props, { emit }) {
     const goalTextArea = ref(null as unknown as HTMLTextAreaElement);
     const isVisibleGoalForm = ref(false);
 
@@ -72,6 +73,7 @@ export default defineComponent({
       isSubmitting.value = true;
 
       setTimeout(() => {
+        emit("submitted");
         isVisibleGoalForm.value = false;
         isSubmitting.value = false;
       }, 500);
