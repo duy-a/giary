@@ -12,7 +12,7 @@
     <AppPageNav
       class="mb-5"
       :left-nav="{ title: 'My Goals', link: '/' }"
-      :right-nav="{ title: 'Daily Planning', link: '/' }"
+      :right-nav="{ title: 'Daily Planning', link: '/daily-plan' }"
     />
 
     <p class="text-sm italic text-gray-500">
