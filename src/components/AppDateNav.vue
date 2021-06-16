@@ -11,8 +11,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/vue/outline";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   components: {

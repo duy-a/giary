@@ -82,10 +82,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
 import AppPageNav from "@/components/AppPageNav.vue";
 import AppTaskListItem from "@/components/AppTaskListItem.vue";
 import AppTaskSecondaryListItem from "@/components/AppTaskSecondaryListItem.vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   components: {

@@ -35,11 +35,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
 import AppDateNav from "@/components/AppDateNav.vue";
 import AppPageNav from "@/components/AppPageNav.vue";
 import AppTaskForm from "@/components/AppTaskForm.vue";
 import { LockClosedIcon } from "@heroicons/vue/outline";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   components: {

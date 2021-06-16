@@ -41,8 +41,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from "vue";
 import { CubeTransparentIcon } from "@heroicons/vue/outline";
+import { defineComponent, nextTick, ref } from "vue";
 
 export default defineComponent({
   components: {

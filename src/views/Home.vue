@@ -29,9 +29,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import AppGoalListItem from "@/components/AppGoalListItem.vue";
 import AppGoalForm from "@/components/AppGoalForm.vue";
+import AppGoalListItem from "@/components/AppGoalListItem.vue";
+import { defineComponent, ref } from "vue";
 
 export default defineComponent({
   components: {

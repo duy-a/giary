@@ -47,14 +47,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
 import {
-  PencilIcon,
-  TrashIcon,
   CheckIcon,
   LogoutIcon,
+  PencilIcon,
   RefreshIcon,
+  TrashIcon,
 } from "@heroicons/vue/outline";
+import { defineComponent } from "vue";
 
 export default defineComponent({
   components: {
