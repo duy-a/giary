@@ -1,6 +1,7 @@
 <template>
   <div class="flex justify-between">
     <RouterLink
+      v-if="leftNav.isInvisible === undefined"
       :to="leftNav.link"
       tag="button"
       class="
@@ -16,6 +17,7 @@
     </RouterLink>
 
     <RouterLink
+      v-if="rightNav.isInvisible === undefined || !rightNav.isInvisible"
       :to="rightNav.link"
       tag="button"
       class="px-4 py-1 rounded-md text-white bg-green-400 hover:bg-green-500"
@@ -31,6 +33,7 @@ import { defineComponent, PropType } from "vue";
 interface NavItem {
   title: string;
   link: string;
+  isInvisible?: boolean;
 }
 
 export default defineComponent({
@@ -41,6 +44,7 @@ export default defineComponent({
       default: () => ({
         title: "My Goals",
         link: "/",
+        isInvisible: true,
       }),
     },
     rightNav: {
@@ -49,6 +53,7 @@ export default defineComponent({
       default: () => ({
         title: "My Goals",
         link: "/",
+        isInvisible: true,
       }),
     },
   },
