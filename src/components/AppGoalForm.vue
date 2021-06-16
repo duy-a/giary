@@ -19,7 +19,7 @@
       <input
         class="px-5 py-2 w-full border border-gray-200 rounded-md resize-none"
         type="text"
-        placeholder="Achieve my goal by dd/mm/yyyy ..."
+        placeholder="Achieve your goal by dd/mm/yyyy ..."
       />
 
       <div class="flex justify-end space-x-3">
