@@ -60,7 +60,7 @@ export default defineComponent({
     state: {
       type: String,
       default: "active",
-      validator(value: string) {
+      validator: (value: string): boolean => {
         return ["active", "review", "past"].includes(value);
       },
     },
