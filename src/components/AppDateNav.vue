@@ -3,7 +3,7 @@
     <button>
       <ChevronLeftIcon class="h-6 w-6" @click="back()" />
     </button>
-    <p class="text-white">June - {{ week }}</p>
+    <p class="text-white">{{ date }}</p>
     <button>
       <ChevronRightIcon class="h-6 w-6" @click="forward()" />
     </button>
@@ -23,27 +23,28 @@ export default defineComponent({
     step: {
       type: String,
       required: true,
-      validator(value: string) {
+      validator: (value: string): boolean => {
         return ["day", "week"].includes(value);
       },
     },
   },
   emits: ["back", "forward"],
-  setup(_props, { emit }) {
-    const week = ref("Week 2");
+  setup(props, { emit }) {
+    const date = ref("");
+    date.value = props.step === "week" ? "June - Week 2" : "Fri - 02.01.2021";
 
     function back(): void {
-      week.value = "Week 1";
+      date.value = props.step === "week" ? "June - Week 1" : "Thu - 01.01.2021";
       emit("back");
     }
 
     function forward(): void {
-      week.value = "Week 2";
+      date.value = props.step === "week" ? "June - Week 2" : "Fri - 02.01.2021";
       emit("forward");
     }
 
     return {
-      week,
+      date,
       back,
       forward,
     };
