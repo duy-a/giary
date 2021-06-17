@@ -61,7 +61,7 @@
       </p>
     </section>
 
-    <RouterLink v-slot="{ navigate }" to="/weekly-plan" custom>
+    <RouterLink v-slot="{ navigate }" to="/daily-plan" custom>
       <button
         class="
           mt-8

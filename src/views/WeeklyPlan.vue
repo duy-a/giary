@@ -31,6 +31,24 @@
       class="mt-8"
       @submitted="isTaskVisible = true"
     />
+
+    <RouterLink v-slot="{ navigate }" to="/weekly-review" custom>
+      <button
+        class="
+          mt-8
+          py-2
+          px-5
+          text-white
+          bg-green-400
+          hover:bg-green-500
+          w-full
+          rounded-md
+        "
+        @click="navigate"
+      >
+        End of Week
+      </button>
+    </RouterLink>
   </BaseLayout>
 </template>
 

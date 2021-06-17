@@ -3,6 +3,7 @@ import Home from "@/views/Home.vue";
 import WeeklyPlan from "@/views/WeeklyPlan.vue";
 import DailyPlan from "@/views/DailyPlan.vue";
 import DailyReview from "@/views/DailyReview.vue";
+import WeeklyReview from "@/views/WeeklyReview.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/daily-review",
     name: "dailyReviewView",
     component: DailyReview,
+  },
+  {
+    path: "/weekly-review",
+    name: "weeklyReviewView",
+    component: WeeklyReview,
   },
 ];
 
