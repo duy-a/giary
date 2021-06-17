@@ -32,7 +32,7 @@
       @submitted="isTaskVisible = true"
     />
 
-    <RouterLink v-slot="{ navigate }" to="/weekly-review" custom>
+    <RouterLink v-if="!isPast" v-slot="{ navigate }" to="/weekly-review" custom>
       <button
         class="
           mt-8
