@@ -11,11 +11,13 @@
     "@heroicons/vue": "^1.0.1",
     "core-js": "^3.14.0",
     "moment": "^2.29.1",
+    "uuid": "^8.3.2",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
   "devDependencies": {
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "^4.27.0",
     "@typescript-eslint/parser": "^4.27.0",
     "@vue/cli-plugin-babel": "~4.5.13",
