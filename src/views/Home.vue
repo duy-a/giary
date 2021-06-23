@@ -9,11 +9,9 @@
     <ul class="mt-5 space-y-8">
       <RouterLink v-slot="{ navigate }" to="/weekly-plan" custom>
         <AppGoalListItem
-          class="hover:bg-gray-50 cursor-pointer"
-          @click="navigate"
-        />
-        <AppGoalListItem
-          v-if="isGoalVisible"
+          v-for="goal in goalList"
+          :key="goal.title"
+          :goal="goal"
           class="hover:bg-gray-50 cursor-pointer"
           @click="navigate"
         />
@@ -21,17 +19,21 @@
     </ul>
 
     <AppGoalForm
-      v-if="!isGoalVisible"
+      v-if="goalList.length < 2"
+      v-model:title="newGoal.title"
+      v-model:dueDate="newGoal.dueDate"
       class="mt-8"
-      @submitted="isGoalVisible = true"
+      @submitting="addGoal()"
     />
   </BaseLayout>
 </template>
 
 <script lang="ts">
+import { useStore } from "@/store/index";
 import AppGoalForm from "@/components/AppGoalForm.vue";
 import AppGoalListItem from "@/components/AppGoalListItem.vue";
 import { defineComponent, ref } from "vue";
+import Goal from "@/types/Goal.interface";
 
 export default defineComponent({
   components: {
@@ -39,10 +41,29 @@ export default defineComponent({
     AppGoalForm,
   },
   setup() {
-    const isGoalVisible = ref(false);
+    const store = useStore();
+
+    const { goalList } = store.state;
+
+    const newGoal = ref({
+      title: "",
+      dueDate: "",
+    } as Goal);
+
+    function addGoal() {
+      if (goalList.length < 2) {
+        store.commit("addGoal", newGoal.value);
+        newGoal.value = {
+          title: "",
+          dueDate: "",
+        } as Goal;
+      }
+    }
 
     return {
-      isGoalVisible,
+      goalList,
+      newGoal,
+      addGoal,
     };
   },
 });
