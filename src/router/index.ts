@@ -12,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Home,
   },
   {
-    path: "/weekly-plan",
+    path: "/:goalId/weekly-plan",
     name: "weeklyPlanView",
     component: WeeklyPlan,
   },

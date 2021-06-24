@@ -7,10 +7,14 @@
     <p class="text-sm italic text-gray-500">You can have up to 2 goals</p>
 
     <ul class="mt-5 space-y-8">
-      <RouterLink v-slot="{ navigate }" to="/weekly-plan" custom>
+      <RouterLink
+        v-for="goal in goalList"
+        v-slot="{ navigate }"
+        :key="goal.id"
+        :to="`/${goal.id}/weekly-plan`"
+        custom
+      >
         <AppGoalListItem
-          v-for="goal in goalList"
-          :key="goal.title"
           :goal="goal"
           class="hover:bg-gray-50 cursor-pointer"
           @click="navigate"
