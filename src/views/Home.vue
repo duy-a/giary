@@ -7,19 +7,15 @@
     <p class="text-sm italic text-gray-500">You can have up to 2 goals</p>
 
     <ul class="mt-5 space-y-8">
-      <RouterLink
+      <AppGoalListItem
         v-for="goal in goalList"
-        v-slot="{ navigate }"
         :key="goal.id"
-        :to="`/${goal.id}/weekly-plan`"
-        custom
-      >
-        <AppGoalListItem
-          :goal="goal"
-          class="hover:bg-gray-50 cursor-pointer"
-          @click="navigate"
-        />
-      </RouterLink>
+        :goal="goal"
+        :navigate-to="`/${goal.id}/weekly-plan`"
+        :is-hoverable="true"
+        @update="updateGoal($event)"
+        @delete="deleteGoal(goal.id)"
+      />
     </ul>
 
     <AppGoalForm
@@ -46,9 +42,7 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-
     const { goalList } = store.state;
-
     const newGoal = ref({
       title: "",
       dueDate: "",
@@ -64,10 +58,21 @@ export default defineComponent({
       }
     }
 
+    function updateGoal(goal: Goal): void {
+      console.log("update", goal);
+      store.commit("updateGoal", goal);
+    }
+
+    function deleteGoal(goalId: string): void {
+      store.commit("deleteGoal", goalId);
+    }
+
     return {
       goalList,
       newGoal,
       addGoal,
+      updateGoal,
+      deleteGoal,
     };
   },
 });

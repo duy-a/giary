@@ -11,12 +11,26 @@ export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
   state: {
-    goalList: [],
+    goalList: [
+      {
+        id: "as",
+        title: "Ghlle",
+        dueDate: "31/12/2020",
+      },
+    ],
   },
   mutations: {
     addGoal(state: State, goal: Goal): void {
       goal.id = uuidv4();
       state.goalList.push(goal);
+    },
+    updateGoal(state: State, goalData: Goal): void {
+      const index = state.goalList.findIndex((goal) => goal.id === goalData.id);
+      state.goalList.splice(index, 1, goalData);
+    },
+    deleteGoal(state: State, goalId: string): void {
+      const index = state.goalList.findIndex((goal) => goal.id === goalId);
+      state.goalList.splice(index, 1);
     },
   },
 });

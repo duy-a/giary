@@ -1,7 +1,7 @@
 <template>
   <div>
     <button
-      v-if="!isVisibleGoalForm"
+      v-if="!isVisibleGoalForm && haveTriggerFormBtn"
       class="py-10 border border-gray-200 rounded-md hover:bg-gray-50 w-full"
       @click="showGoalInput()"
     >
@@ -40,7 +40,7 @@
         <button
           type="button"
           class="action-btn border border-gray-200 hover:bg-gray-100"
-          @click="isVisibleGoalForm = false"
+          @click.stop="hideGoalInput()"
         >
           Cancel
         </button>
@@ -53,7 +53,7 @@
             v-if="isSubmitting"
             class="h-5 w-5 animate-spin"
           />
-          <span v-else>Add Goal</span>
+          <span v-else>{{ submitBtnText }}</span>
         </button>
       </div>
     </form>
@@ -82,8 +82,16 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    haveTriggerFormBtn: {
+      type: Boolean,
+      default: true,
+    },
+    submitBtnText: {
+      type: String,
+      default: "Add Goal",
+    },
   },
-  emits: ["update:title", "update:dueDate", "submitting"],
+  emits: ["update:title", "update:dueDate", "cancel", "submitting"],
   setup(props, { emit }) {
     const goalTextArea = ref(null as unknown as HTMLTextAreaElement);
     const isVisibleGoalForm = ref(false);
@@ -96,6 +104,11 @@ export default defineComponent({
       nextTick(() => {
         goalTextArea.value.focus();
       });
+    }
+
+    function hideGoalInput() {
+      isVisibleGoalForm.value = false;
+      emit("cancel");
     }
 
     function submit(): void {
@@ -123,6 +136,7 @@ export default defineComponent({
       isVisibleGoalForm,
       errors,
       showGoalInput,
+      hideGoalInput,
       submit,
     };
   },
