@@ -59,7 +59,6 @@ export default defineComponent({
     }
 
     function updateGoal(goal: Goal): void {
-      console.log("update", goal);
       store.commit("updateGoal", goal);
     }
 
