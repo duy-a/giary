@@ -11,13 +11,7 @@ export const key: InjectionKey<Store<State>> = Symbol();
 
 export const store = createStore<State>({
   state: {
-    goalList: [
-      {
-        id: "as",
-        title: "Ghlle",
-        dueDate: "31/12/2020",
-      },
-    ],
+    goalList: [],
   },
   mutations: {
     addGoal(state: State, goal: Goal): void {
