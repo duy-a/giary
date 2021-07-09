@@ -20,17 +20,14 @@
     </p>
 
     <ul class="mt-5 space-y-8">
-      <AppTaskListItem v-if="!isPast" />
-      <AppTaskListItem v-if="!isPast" />
-      <AppTaskListItem v-if="!isPast && isTaskVisible" />
-      <AppTaskListItem v-if="isPast" state="past" />
+      <AppTaskListItem
+        v-for="task in weeklyTasksByDueDate"
+        :key="task.id"
+        :task="task"
+      />
     </ul>
 
-    <AppTaskForm
-      v-if="!isPast && !isTaskVisible"
-      class="mt-8"
-      @submitted="isTaskVisible = true"
-    />
+    <AppTaskForm v-if="!isPast" class="mt-8" />
 
     <RouterLink v-if="!isPast" v-slot="{ navigate }" to="/weekly-review" custom>
       <button
@@ -56,8 +53,12 @@
 import AppDateNav from "@/components/AppDateNav.vue";
 import AppPageNav from "@/components/AppPageNav.vue";
 import AppTaskForm from "@/components/AppTaskForm.vue";
+import { useStore } from "@/store/index";
+import Task from "@/types/Task.interface";
 import { LockClosedIcon } from "@heroicons/vue/outline";
-import { defineComponent, ref } from "vue";
+import { computed, defineComponent, ref } from "vue";
+import { useRoute } from "vue-router";
+import moment from "moment";
 
 export default defineComponent({
   components: {
@@ -67,11 +68,24 @@ export default defineComponent({
     LockClosedIcon,
   },
   setup() {
-    const isTaskVisible = ref(false);
+    const route = useRoute();
+    const store = useStore();
+
     const isPast = ref(false);
 
+    const goalWeeklyTasks = computed(() =>
+      store.getters.getWeeklyTasksByGoalId(route.params.goalId)
+    );
+
+    const weeklyTasksByDueDate = computed(() =>
+      goalWeeklyTasks.value.tasks.filter(
+        (task: Task) =>
+          task.dueDate === moment().format("DD/MM/YYYY").toString()
+      )
+    );
+
     return {
-      isTaskVisible,
+      weeklyTasksByDueDate,
       isPast,
     };
   },

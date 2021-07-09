@@ -41,15 +41,14 @@
       </template>
 
       <p class="text-lg font-light">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro debitis
-        quo nam hic a cupiditate ex illum id. Enim voluptates, est vero possimus
-        sunt accusamus corporis recusandae pariatur delectus ipsa?
+        {{ task.title }}
       </p>
     </div>
   </li>
 </template>
 
 <script lang="ts">
+import Task from "@/types/Task.interface";
 import {
   CheckIcon,
   LogoutIcon,
@@ -57,7 +56,7 @@ import {
   RefreshIcon,
   TrashIcon,
 } from "@heroicons/vue/outline";
-import { defineComponent } from "vue";
+import { defineComponent, PropType } from "vue";
 
 export default defineComponent({
   components: {
@@ -68,6 +67,10 @@ export default defineComponent({
     RefreshIcon,
   },
   props: {
+    task: {
+      type: Object as PropType<Task>,
+      required: true,
+    },
     state: {
       type: String,
       default: "active",
